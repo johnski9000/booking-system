@@ -1,0 +1,28 @@
+.form{
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+  }
+  .date_label {
+    padding: 10px;
+  }
+  .date_input {
+    display: block;
+    border: unset;
+    padding: 10px;
+    border-radius: 30px;
+    margin-top: 10px;
+    flex: 1;
+  }
+  .flex_column_container {
+    display: flex;
+    flex-flow: column;
+  }
+  .form button {
+    background: black;
+    color: white;
+    padding: 10px;
+    border-radius: 22px;
+    margin-top: 40px;
+    margin-bottom: 10px;
+  }

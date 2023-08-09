@@ -6,3 +6,19 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
+.creds {
+  position: absolute;
+  bottom: 30px;
+  z-index: 100;
+  font-size: 13px;
+  font-weight: light;
+}
+.creds a {
+  text-decoration: none;
+  font-weight: 600;
+}
+.error {
+  text-align: center;
+  color: red;
+  font-weight: 400;
+}

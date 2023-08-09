@@ -61,12 +61,12 @@ export default function SignUp() {
           <h1 className={styles.title}>Create your account</h1>
           <form className={styles.form}  onSubmit={handleForm}>
             <div className={styles.input_container}>
-            <label for="email">Email</label>
+            <label htmlFor="email">Email</label>
 
               <input type="text" name="email" placeholder="Enter your email" value={email} onChange={(e) => handleChange(e)}/>
             </div>
             <div className={styles.input_container}>
-            <label for="password">Password</label>
+            <label htmlFor="password">Password</label>
 
               <input type="text" name="password" placeholder="Enter your password" value={password} onChange={(e) => handleChange(e)}/>
             </div>

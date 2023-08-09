@@ -1,7 +1,9 @@
 .outer_container {
   width: 100vw;
   height: 100vh;
-  background-image: url(https://images.saymedia-content.com/.image/t_share/MTc4NzM1OTc4MzE0MzQzOTM1/how-to-create-cool-website-backgrounds-the-ultimate-guide.png);
+  overflow-x: hidden;
+  background-image: url("../public/login-bg.jpeg");
+  /* background-image: url(https://images.saymedia-content.com/.image/t_share/MTc4NzM1OTc4MzE0MzQzOTM1/how-to-create-cool-website-backgrounds-the-ultimate-guide.png); */
   /* background-image: url("../public/background.jpg"); */
   background-size: cover;
   position: relative;
@@ -25,6 +27,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 @media screen and (max-width: 768px) {
@@ -48,11 +51,7 @@
   border-radius: 30px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 }
-.form{
-  display: flex;
-  flex-flow: column;
-  gap: 10px;
-}
+
 .title {
   text-align: center;
   padding: 20px;
@@ -84,4 +83,7 @@
   text-decoration: unset;
   display: flex;
   justify-content: center;
+}
+.subTitle {
+  text-align: center;
 }
