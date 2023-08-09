@@ -18,7 +18,7 @@ function Page() {
   const router = useRouter();
   useEffect(() => {
     if (user == null) router.push("/login");
-  }, [user]);
+  }, [user, router]);
   
   // check date in the database, save in context the query and move to next step
   async function checkData(e, date) {

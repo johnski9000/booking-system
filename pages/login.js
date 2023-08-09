@@ -1,6 +1,5 @@
 "use client"
 import Head from "next/head";
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import { useRouter } from 'next/navigation'
@@ -40,7 +39,7 @@ export default function Login() {
 
   useEffect(() => {
     if (user) router.push("/")
-}, [user])
+}, [user, router])
 
   return (
     <div className={styles.outer_container}>

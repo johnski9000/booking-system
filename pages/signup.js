@@ -1,7 +1,6 @@
 "use client"
 import Head from "next/head";
-import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import { useRouter } from 'next/navigation'
 import signUp from "./firebase/signup";
@@ -22,10 +21,7 @@ export default function SignUp() {
       setPassword(input.target.value)
     }
   }
-  function onSubmit(e) {
-    e.preventDefault() 
-    console.log(email, password)
-  }
+
   async function handleForm (event) {
     event.preventDefault()
 
@@ -46,7 +42,7 @@ export default function SignUp() {
 
   useEffect(() => {
       if (user) router.push("/")
-  }, [user])
+  }, [user, router])
 
   return (
     <div className={styles.outer_container}>
