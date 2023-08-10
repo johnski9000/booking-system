@@ -1,6 +1,6 @@
 "use client"
 import React, { useContext, useEffect, useState } from "react";
-import { Booking_data } from "../../context/Context";
+import { Booking_data } from "../../../context/Context";
 import styles from "./checktime.module.css";
 
 function CheckTime({changeStep}) {

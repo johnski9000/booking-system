@@ -1,14 +1,14 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAuthContext } from "./context/AuthContext";
+import { useAuthContext } from "../context/AuthContext";
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
 import { doc, getDoc, getFirestore } from "firebase/firestore";
-import firebase_app from "./firebase/firebase.config";
+import firebase_app from "../firebase/firebase.config";
 import CheckDate from "./components/CheckDate/CheckDate";
 import CheckTime from "./components/CheckTime/CheckTime";
-import { Booking_data } from "./context/Context";
+import { Booking_data } from "../context/Context";
 
 function Page() {
   const [step, setStep] = useState("date");

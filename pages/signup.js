@@ -3,9 +3,9 @@ import Head from "next/head";
 import React, { useEffect, useState } from 'react';
 import styles from "../styles/Home.module.css";
 import { useRouter } from 'next/navigation'
-import signUp from "./firebase/signup";
+import signUp from "../firebase/signup";
 import Link from "next/link"
-import signIn from "./firebase/signin";
+import signIn from "../firebase/signin";
 
 
 export default function SignUp() {

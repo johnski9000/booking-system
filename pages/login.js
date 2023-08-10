@@ -4,9 +4,9 @@ import React, { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 import { useRouter } from 'next/navigation'
 import Link from "next/link"
-import signIn from "./firebase/signin";
-import checkLogin from "./firebase/checkLogin";
-import { useAuthContext } from "./context/AuthContext";
+import signIn from "../firebase/signin";
+import checkLogin from "../firebase/checkLogin";
+import { useAuthContext } from "../context/AuthContext";
 
 export default function Login() {
     console.log(checkLogin())
