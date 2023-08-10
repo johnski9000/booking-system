@@ -6,6 +6,7 @@ import { useRouter } from 'next/navigation'
 import signUp from "../firebase/signup";
 import Link from "next/link"
 import signIn from "../firebase/signin";
+import { useAuthContext } from "../context/AuthContext";
 
 
 export default function SignUp() {
