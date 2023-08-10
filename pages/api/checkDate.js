@@ -1,4 +1,4 @@
-import firebase_app from "../firebase/firebase.config";
+import firebase_app from "../../firebase/firebase.config";
 import {
   collection,
   addDoc,
