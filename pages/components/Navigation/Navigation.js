@@ -25,10 +25,14 @@ function Navigation() {
   const redirectMeBooking = () => {
     router.push("/booking")
   }
+  const redirectMeHome = () => {
+    router.push("/")
+  }
   const menu_items = [
     {
       text: "Home",
-      image: "./home.png"
+      image: "./home.png",
+      onClick: redirectMeHome
     },
     {
       text: "My Account",
