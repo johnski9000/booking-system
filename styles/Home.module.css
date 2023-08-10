@@ -40,6 +40,8 @@
   }
 }
 .inner_container {
+  overflow: hidden;
+  position: relative;
   width: 100%;
   max-width: 400px;
   height: 600px;
