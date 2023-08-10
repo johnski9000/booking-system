@@ -7,6 +7,7 @@ import Head from "next/head";
 import CheckDate from "./components/CheckDate/CheckDate";
 import CheckTime from "./components/CheckTime/CheckTime";
 import { User_data } from "../context/Context";
+import Navigation from "./components/Navigation/Navigation";
 
 function MakeBooking() {
   const [step, setStep] = useState("date");
@@ -49,6 +50,7 @@ function MakeBooking() {
 
       <main className={styles.container}>
         <section className={styles.inner_container}>
+          <Navigation/>
           <h1 className={styles.title}>Book a table</h1>
 
           {step === "date" && <CheckDate checkData={checkData} />}

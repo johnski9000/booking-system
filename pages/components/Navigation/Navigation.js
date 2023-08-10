@@ -12,15 +12,18 @@ function Navigation() {
   const handleLogout = () => {
     signOut(auth)
       .then(() => {
-        console.log("signed out")
+        router.push("/login")
       })
       .catch(error => {
         // Handle logout error
         console.error("Logout error:", error);
       });
   };
-  const redirectMe = () => {
+  const redirectMeLogin = () => {
     router.push("/login")
+  }
+  const redirectMeBooking = () => {
+    router.push("/booking")
   }
   const menu_items = [
     {
@@ -33,16 +36,18 @@ function Navigation() {
     },
     {
       text: "Make a booking",
-      image: "./make-booking.png"
+      image: "./make-booking.png",
+      onClick: user ? redirectMeBooking : redirectMeLogin
     },
     {
       text: "My Bookings",
-      image: "./booking.png"
+      image: "./booking.png",
+      link: "/booking"
     },
     {
       text: user ? "Log Out" : "Log In",
       image: "logout.png",
-      onClick: user ? handleLogout : redirectMe // Use the defined function here
+      onClick: user ? handleLogout : redirectMeLogin // Use the defined function here
     },
   ];
 
@@ -59,7 +64,8 @@ function Navigation() {
       <div className={open ? styles.menu_open : styles.menu}>
         <ul className={styles.menu_list}>
           {menu_items.map((item, index) => (
-            <li key={index} className={styles.menu_item} onClick={item.onClick}>
+            <li key={index} className={styles.menu_item} onClick={item.onClick}
+            >
               <img src={item.image} alt={item.text} />
               {item.text}
             </li>
