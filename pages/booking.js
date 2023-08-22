@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthContext } from "../context/AuthContext";
 import styles from "../styles/Home.module.css";

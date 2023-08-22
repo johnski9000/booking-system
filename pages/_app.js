@@ -8,11 +8,11 @@ function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const { user } = useAuthContext();
 
-  useEffect(() => {
-    if (!user) {
-      router.push("/login")
-    }
-  }, [user])
+  // useEffect(() => {
+  //   if (!user) {
+  //     router.push("/login")
+  //   }
+  // }, [user])
   
   return (
     <AuthContextProvider>
