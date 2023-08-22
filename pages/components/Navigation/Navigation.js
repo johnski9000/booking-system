@@ -28,12 +28,15 @@ function Navigation() {
   const redirectMeHome = () => {
     router.push("/")
   }
+  const redirectMyBookings = () => {
+    router.push("/mybookings")
+  }
   const menu_items = [
-    {
-      text: "Home",
-      image: "./home.png",
-      onClick: redirectMeHome
-    },
+    // {
+    //   text: "Home",
+    //   image: "./home.png",
+    //   onClick: redirectMeHome
+    // },
     {
       text: "My Account",
       image: "./user.png"
@@ -46,7 +49,7 @@ function Navigation() {
     {
       text: "My Bookings",
       image: "./booking.png",
-      link: "/booking"
+      onClick: redirectMyBookings
     },
     {
       text: user ? "Log Out" : "Log In",

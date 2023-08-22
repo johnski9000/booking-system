@@ -7,6 +7,7 @@ function CheckDate( {checkData }) {
     setDate(e.target.value);
   }
   return (
+    
     <form className={styles.form}>
       <div className={styles.flex_column_container}>
         <label className={styles.date_label} htmlFor="date">
@@ -20,7 +21,7 @@ function CheckDate( {checkData }) {
           value={date}
         />
       </div>
-      <button onClick={(e) => checkData(e, date)}>Check booking</button>
+      <button onClick={(e) => checkData(e, date)}>Check date</button>
     </form>
   );
 }

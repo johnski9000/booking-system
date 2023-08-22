@@ -11,12 +11,17 @@ import Navigation from "./components/Navigation/Navigation";
 
 function MakeBooking() {
   const [step, setStep] = useState("date");
+  const [loading, setLoading] = useState("")
+  const [error, setError] = useState()
 
   const { user } = useAuthContext();
   const { userData, setUserData } = useContext(User_data);
+  console.log(userData)
+  
   const router = useRouter();
   // check date in the database, save in context the query and move to next step
   async function checkData(e, date) {
+    setLoading(true)
     e.preventDefault();
     try {
       const response = await fetch("/api/checkDate", {
@@ -30,8 +35,11 @@ function MakeBooking() {
         { ...userData, booking_date: date, booking_date_id: responseData.id },
         responseData,
       ]);
+      setLoading("")
       setStep("time");
     } catch (error) {
+      setLoading("")
+      setError(error)
       console.log(error);
     }
   }
@@ -52,9 +60,16 @@ function MakeBooking() {
         <section className={styles.inner_container}>
           <Navigation/>
           <h1 className={styles.title}>Book a table</h1>
+          {loading && <div
+          style={{
+            display:"flex",
+            justifyContent: "center",
+            marginTop: "100px"
+          }}
+          ><div className="loader"/></div>}
 
-          {step === "date" && <CheckDate checkData={checkData} />}
-          {step === "time" && <CheckTime />}
+          {step === "date" && loading !== true && <CheckDate checkData={checkData} />}
+          {step === "time" && loading !== true && <CheckTime />}
         </section>
         <div className="creds">
           <div>

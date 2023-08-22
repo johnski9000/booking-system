@@ -31,6 +31,8 @@ export default async function handler(req, res) {
           booking.booking_times[booking_data.booking_time].push({
             name: booking_data.name,
             email: booking_data.email,
+            contact_number: booking_data.contact_number,
+            guests: booking_data.guest_number,
             user_id: id
           });
       
@@ -63,7 +65,9 @@ export default async function handler(req, res) {
         const updated_user = find_user.data();
         updated_user.bookings.push({
           booking_ref: booking_data.booking_id,
-          guests: 2,
+          booking_date: booking_data.booking_date,
+          booking_time: booking_data.booking_time,
+          guests: booking_data.guest_number,
         });
         const updatedUserDoc = await updateDoc(find_user.ref, updated_user);
         const updated_reply = await getDoc(find_user.ref);
@@ -78,7 +82,9 @@ export default async function handler(req, res) {
         bookings: [
           {
             booking_ref: booking_data.booking_id,
-            guests: 2,
+          booking_date: booking_data.booking_date,
+          booking_time: booking_data.booking_time,
+          guests: booking_data.guest_number
           },
         ],
       });

@@ -1,25 +1,29 @@
 "use client"
+import { useRouter } from "next/router";
 import React, { useContext, useEffect, useState } from "react";
-import { Booking_data } from "../../../context/Context";
+import {  User_data } from "../../../context/Context";
 import styles from "./checktime.module.css";
 
 function CheckTime({changeStep}) {
     const [error, setError] = useState("")
+    const [loading, setLoading] = useState("")
     const [fullName, setFullName] = useState("");
     const [contactNumber, setContactNumber] = useState("");
     const [email, setEmail] = useState("");
+    const [amountOfGuests, setAmountOfGuests] = useState();
     const [bookingTime, setBookingTime] = useState("");
-
-  const { booking } = useContext(Booking_data);
-    const date = booking[0].booking_date
+    const {userData} = useContext(User_data);
+    const router = useRouter();
+    const date = userData[0].booking_date
 //   sort time for display purposes
   const availableTimes =
-    booking[1].data.booking_times &&
-    Object.keys(booking[1].data.booking_times).sort(
+  userData[1].data.booking_times &&
+    Object.keys(userData[1].data.booking_times).sort(
       (a, b) => parseInt(a) - parseInt(b)
     );
     // submit booking object to firebase to store in the user object and db object
   async function handleSubmit(e) {
+    setLoading(true)
     e.preventDefault();
     const booking_data = {
         name: fullName,
@@ -27,7 +31,8 @@ function CheckTime({changeStep}) {
         email: email,
         booking_time: bookingTime,
         booking_date: date,
-        booking_id: booking[0].booking_date_id
+        booking_id: userData[0].booking_date_id,
+        guest_number: amountOfGuests
     }
     try {
         const response = await fetch("/api/makeBooking", {
@@ -37,18 +42,30 @@ function CheckTime({changeStep}) {
           }),
         });
         const responseData = await response.json();
+        setLoading("Booking made")
         if (responseData.error) {
             setError(responseData.error)
 
         }
     } catch (error) {
         console.log(error, "error");
+        setLoading(false)
         setError(error.message)
       }
   }
+  useEffect(() => {
+    if (loading === "Booking made") {
+      router.push("/")
+    }
+    if (amountOfGuests >= 10) {
+      setAmountOfGuests(10)
+    }
+  }, [loading, amountOfGuests])
+  
 
   return (
-    <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
+    <div className={styles.main_container}>
+      { loading ? <div className="loader"></div> : <form className={styles.form} onSubmit={(e) => handleSubmit(e)}>
       <div className={styles.flex_column_container}>
         <label className={styles.date_label} htmlFor="date">
           Full name -
@@ -96,10 +113,21 @@ function CheckTime({changeStep}) {
             </div>
           ))}
         </div>
+        <div className={styles.flex_column_container}>
+        <label className={styles.date_label} htmlFor="amountOfGuests">
+          Number of guests -
+        </label>
+        <input className={styles.date_input} type="number" name="amountOfGuests"  min="1" max="10"
+        onChange={(e) => setAmountOfGuests(e.target.value)}
+        value={amountOfGuests}
+        />
+      </div>
       </div>
       {error && <div className="error">{error}</div>}
-      <button type="submit" style={error ? {marginTop: "10px"} : {}}>Check booking</button>
-    </form>
+      <button type="submit" style={error ? {marginTop: "10px"} : {}}>Booking</button>
+    </form>}
+    </div>
+   
   );
 }
 

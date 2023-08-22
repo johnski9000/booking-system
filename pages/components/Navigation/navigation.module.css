@@ -15,6 +15,8 @@
     margin-left: 40px;
     width: fit-content;
     pointer-events: all;
+    z-index: 12;
+    position: relative;
 }
 .nav_line {
     display: block;
@@ -64,6 +66,7 @@
     display: flex;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     pointer-events: all;
+    z-index: 11;
   }
   .menu_list {
     padding: 75px 33px;

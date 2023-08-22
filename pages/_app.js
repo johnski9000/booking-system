@@ -10,7 +10,6 @@ function MyApp({ Component, pageProps }) {
   function checkAuth (user) {
     return !!user
   }
-  console.log(user, "user")
   useEffect(() => {
     if (checkAuth(user)) {
       router.push("/login")
