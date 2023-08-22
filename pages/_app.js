@@ -7,14 +7,12 @@ import { useEffect } from "react";
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const { user } = useAuthContext();
-  function checkAuth (user) {
-    return !!user
-  }
+
   useEffect(() => {
-    if (checkAuth(user)) {
+    if (!user) {
       router.push("/login")
     }
-  }, [])
+  }, [user])
   
   return (
     <AuthContextProvider>

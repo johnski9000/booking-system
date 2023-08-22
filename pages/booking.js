@@ -19,6 +19,11 @@ function MakeBooking() {
   console.log(userData)
   
   const router = useRouter();
+  useEffect(() => {
+    if (!user) {
+      router.push("/login")
+    }
+  }, [user])
   // check date in the database, save in context the query and move to next step
   async function checkData(e, date) {
     setLoading(true)
@@ -46,7 +51,6 @@ function MakeBooking() {
 
   //
 
-  function submitBooking() {}
 
   return (
     <div className={styles.outer_container}>

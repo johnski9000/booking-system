@@ -1,12 +1,22 @@
 import Head from 'next/head';
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import styles from "../styles/Home.module.css";
 import Navigation from './components/Navigation/Navigation';
 import { User_data } from "../context/Context";
+import { useAuthContext } from '../context/AuthContext';
+import { useRouter } from 'next/router';
 
 
 function mybookings() {
   const { userData } = useContext(User_data);
+  const { user } = useAuthContext();
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!user) {
+      router.push("/login")
+    }
+  }, [user])
   console.log(userData)
 
   return (

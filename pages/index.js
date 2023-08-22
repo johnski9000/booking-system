@@ -1,13 +1,22 @@
 "use client";
 import styles from "../styles/Home.module.css";
 import Head from "next/head";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Context, { User_data } from "../context/Context";
 import Navigation from "./components/Navigation/Navigation";
+import { useRouter } from "next/router";
+import { useAuthContext } from "../context/AuthContext";
 
 function Page() {
   const { userData } = useContext(User_data);
+  const {user} = useAuthContext()
   console.log(userData);
+  const router = useRouter()
+  useEffect(() => {
+    if (!user) {
+      router.push("/login")
+    }
+  }, [user])
 
   return (
     <div className={styles.outer_container}>
