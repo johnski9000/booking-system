@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useAuthContext } from "../../../context/AuthContext";
 import styles from "../../../styles/Home.module.css";
 
-function Item({ item, index }) {
+function Item({ item, index, userEmail }) {
   const [cancel, setCancel] = useState(false)
   console.log(item)
 
@@ -17,8 +17,7 @@ console.log(user)
         body: JSON.stringify({
           ref : item.booking_ref,
           time: item.booking_time,
-          date: item.booking_date,
-          id: "1"
+          email: userEmail
         }),
       });
       const responseData = await response.json();

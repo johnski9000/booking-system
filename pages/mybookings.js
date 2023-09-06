@@ -58,7 +58,7 @@ function mybookings() {
       <ul className={styles.bookings_list}>
       {
         userData.bookings && userData.bookings.map((item, index) => (
-          <Item item={item} index={index}/>
+          <Item item={item} index={index} userEmail={user.email}/>
         ))
       }
       </ul>
