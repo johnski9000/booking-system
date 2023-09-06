@@ -13,6 +13,7 @@ function MakeBooking() {
   const [step, setStep] = useState("date");
   const [loading, setLoading] = useState("")
   const [error, setError] = useState()
+  const [bookingData, setBookingData] = useState()
 
   const { user } = useAuthContext();
   const { userData, setUserData } = useContext(User_data);
@@ -36,10 +37,7 @@ function MakeBooking() {
         }),
       });
       const responseData = await response.json();
-      setUserData([
-        { ...userData, booking_date: date, booking_date_id: responseData.id },
-        responseData,
-      ]);
+      setBookingData(responseData)
       setLoading("")
       setStep("time");
     } catch (error) {
@@ -49,7 +47,6 @@ function MakeBooking() {
     }
   }
 
-  //
 
 
   return (
@@ -73,7 +70,7 @@ function MakeBooking() {
           ><div className="loader"/></div>}
 
           {step === "date" && loading !== true && <CheckDate checkData={checkData} />}
-          {step === "time" && loading !== true && <CheckTime />}
+          {step === "time" && loading !== true && <CheckTime bookingData={bookingData}/>}
         </section>
         <div className="creds">
           <div>

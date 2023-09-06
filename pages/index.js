@@ -8,12 +8,17 @@ import { useRouter } from "next/router";
 import { useAuthContext } from "../context/AuthContext";
 
 function Page() {
-  const { userData } = useContext(User_data);
+  const { userData, setUserData } = useContext(User_data);
   const {user} = useAuthContext()
   console.log(userData);
   const router = useRouter()
   useEffect(() => {
     if (!user) {
+      setUserData({
+        email: user ? user.email : "",
+        booking_date: "",
+        bookings: []
+      })
       router.push("/login")
     }
   }, [user])

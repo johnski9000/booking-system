@@ -5,10 +5,11 @@ import Navigation from './components/Navigation/Navigation';
 import { User_data } from "../context/Context";
 import { useAuthContext } from '../context/AuthContext';
 import { useRouter } from 'next/router';
+import Item from './components/MyBookings/Item';
 
 
 function mybookings() {
-  const { userData } = useContext(User_data);
+  const { userData, setUserData } = useContext(User_data);
   const { user } = useAuthContext();
   const router = useRouter()
 
@@ -17,6 +18,29 @@ function mybookings() {
       router.push("/login")
     }
   }, [user])
+  useEffect(() => {
+    const fetchData = async () => {
+      if (user) {
+        try {
+          const response = await fetch("/api/pullUserBookings", {
+            method: "POST",
+            body: JSON.stringify({
+              email: user.email
+            }),
+          });
+          const responseData = await response.json();
+          setUserData(prevUserData => ({
+            ...prevUserData,
+            bookings: responseData.bookings
+          }));
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        }
+      }
+    };
+  
+    fetchData();
+  }, []);
   console.log(userData)
 
   return (
@@ -33,13 +57,8 @@ function mybookings() {
       <h1 className={styles.title}>Bookings</h1>
       <ul className={styles.bookings_list}>
       {
-        userData.bookings.length >= 1 && userData.bookings.map((item, index) => (
-          <li className={styles.bookings_list_item}>
-            <h3>{item.booking_date}</h3>
-            <p>Booking at {item.booking_time} for {item.guests} guests.</p>
-            <button>Make a change</button>
-            <button>Cancel Booking</button>
-          </li>
+        userData.bookings && userData.bookings.map((item, index) => (
+          <Item item={item} index={index}/>
         ))
       }
       </ul>

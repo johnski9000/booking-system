@@ -35,7 +35,7 @@ function Context({ children }) {
     };
   
     fetchData();
-  }, [user]);
+  }, []);
   
 
   return (

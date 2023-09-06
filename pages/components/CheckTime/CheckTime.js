@@ -4,7 +4,7 @@ import React, { useContext, useEffect, useState } from "react";
 import {  User_data } from "../../../context/Context";
 import styles from "./checktime.module.css";
 
-function CheckTime({changeStep}) {
+function CheckTime({bookingData}) {
     const [error, setError] = useState("")
     const [loading, setLoading] = useState("")
     const [fullName, setFullName] = useState("");
@@ -12,15 +12,16 @@ function CheckTime({changeStep}) {
     const [email, setEmail] = useState("");
     const [amountOfGuests, setAmountOfGuests] = useState();
     const [bookingTime, setBookingTime] = useState("");
-    const {userData} = useContext(User_data);
     const router = useRouter();
-    const date = userData[0].booking_date
+    const date = bookingData.booking_date
 //   sort time for display purposes
+console.log("local state", bookingData)
   const availableTimes =
-  userData[1].data.booking_times &&
-    Object.keys(userData[1].data.booking_times).sort(
+  bookingData.data.booking_times &&
+    Object.keys(bookingData.data.booking_times).sort(
       (a, b) => parseInt(a) - parseInt(b)
     );
+    console.log("times", availableTimes)
     // submit booking object to firebase to store in the user object and db object
   async function handleSubmit(e) {
     setLoading(true)
@@ -30,10 +31,11 @@ function CheckTime({changeStep}) {
         contact_number: contactNumber,
         email: email,
         booking_time: bookingTime,
-        booking_date: date,
-        booking_id: userData[0].booking_date_id,
+        booking_date: bookingData.data.date,
+        booking_id: bookingData.id,
         guest_number: amountOfGuests
     }
+    console.log("booking data", booking_data)
     try {
         const response = await fetch("/api/makeBooking", {
           method: "POST",

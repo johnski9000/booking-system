@@ -49,7 +49,7 @@ function Navigation() {
     {
       text: "My Bookings",
       image: "./booking.png",
-      onClick: redirectMyBookings
+      onClick: user ? redirectMyBookings : redirectMeLogin
     },
     {
       text: user ? "Log Out" : "Log In",
